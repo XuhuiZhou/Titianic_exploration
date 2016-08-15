@@ -9,11 +9,13 @@ Comparison between the survivors and the dead is the core idea of this visualiza
 * Add introduction video to the page.
 * Use dimplish way to create svg and solve the problems about tooltips.
 * Correct grammar mistake.
+
 ##Feedback
 * I firstly showed this graph to my mother,since she do not know the tragedy much,she suggested me to add some background imformation.
 * Forum Mentor mentioned that the tooltips are off the screen.
 * A friend of mine point out that the if color represent death is changed to green would be better.
 * Forum members pick up some grammar mistakes in my visualization and code.
+
 ##Resource
 http://dimplejs.org/examples_viewer.html?id=bars_vertical_grouped_stacked
 http://www.nytimes.com/interactive/2012/05/17/business/dealbook/how-the-facebook-offering-compares.html
