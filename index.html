@@ -43,7 +43,7 @@
       
               
       
-                var svg = d3.select("body")
+                var svg = d3.select("#chartContainer")
                     .append("svg")
                     .attr("width", width + margin)
                     .attr("height", height + margin)
@@ -163,8 +163,10 @@
         
       </div>
     </header>
-    <script type="text/javascript">
-      d3.csv("titanic_data4.csv", draw); // load data
-    </script>
+      <div id ="chartContainer">
+        <script type="text/javascript">
+          d3.csv("titanic_data4.csv", draw); // load data
+        </script>
+      </div>
   </body>
 </html>
