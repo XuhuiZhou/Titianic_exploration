@@ -43,12 +43,7 @@
       
               
       
-                var svg = d3.select("#chartContainer")
-                    .append("svg")
-                    .attr("width", width + margin)
-                    .attr("height", height + margin)
-                    .append('g')
-                    .attr('class','chart');
+                var svg = dimple.newSvg("#chartContainer", width+margin, height+margin);
       
                 var button_labels = ['All Passengers','Children','Men','Women','The aged'];
                 
