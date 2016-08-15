@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <script src="https://d3js.org/d3.v3.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dimple/2.1.6/dimple.latest.min.js"></script>   
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
+
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <title>Edaward.GitHub.io by Edaward</title>
+    <style>
+      div.type_buttons {
+        position: static;
+        top: 115px;
+        left: 740px;
+      }
+
+      div.type_buttons div {
+        background-color: rgb(251, 500, 127);
+        padding: 3px;
+        margin: 7px;
+      }
+    </style>
+    <script type="text/javascript">
+       function draw(data) {
+            
+            /*
+              D3.js setup code
+            */
+      
+                "use strict";
+                var margin =100,
+                    width = 900 - margin,
+                    height = 600 - margin;
+      
+              
+      
+               var svg = d3.select("body")
+                  .append("svg")
+                  .attr("width", width + margin)
+                  .attr("height", height + margin)
+                  .append('g')
+                  .attr('class','chart');
+      
+                var button_labels = ['All Passengers','Children','Men','Women','The aged'];
+                
+            /*
+              Dimple.js Chart construction code
+            */   
+      
+                // update chart when button is clicked
+                function update_which_group(wg) {
+                    create_chart(wg)
+                    return wg
+                };
+      
+      
+                // update chart which category of data to show
+                function create_chart(which_group){
+                      var chart1 = svg.selectAll('*').remove(); 
+      
+                      // filter the data base on different categories
+                      if (which_group==="All Passengers"){
+                        var data2 = data;
+                      }
+      
+                      if (which_group==="Children"){
+                        var data2 = dimple.filterData(data, "Tag", 'Children');
+                      }
+      
+                      if (which_group==="Men"){
+                        
+                        var data2 = dimple.filterData(data, "Tag", 'Men');
+                      }
+      
+                      if (which_group==="Women"){
+                        
+                        var data2 = dimple.filterData(data, "Tag", 'Women'); 
+                      }
+      
+                      if (which_group==="The aged"){
+                       
+                        var data2 = dimple.filterData(data,"Tag",'The aged');
+                      }
+                      
+      
+                      chart1 = update_chart("Class",data2);
+                      chart1.assignColor('Died', "green", "black", 1);         
+                      chart1.draw();  
+                }
+      
+                // update chart type absoulte value 
+                function update_chart(x_var,data2) {
+                      var myChart1 = new dimple.chart(svg, data2);
+                      var x = myChart1.addCategoryAxis("x", x_var); 
+                      x.addOrderRule(["1st class","2nd class","3rd class"])    
+                      myChart1.addLegend(200, 10, 500, 20, "right");
+                      myChart1.addMeasureAxis("y", "Count");
+                      var mySeries = myChart1.addSeries("Survived", dimple.plot.bar);
+                      mySeries.addOrderRule(["Died","Survived"])
+                      return myChart1
+                }
+      
+      
+                var data2 =data;
+                
+                var myChart = new dimple.chart(svg, data2);
+      
+      
+                // create initial chart
+                create_chart('All Passengers')
+      
+                //create buttons 
+                var buttons = d3.select("body")
+                                 .append("div")
+                                 .attr("class", "type_buttons")
+                                 .selectAll("div")
+                                 .data(button_labels)
+                                 .enter()
+                                 .append("div")
+                                 .text(function(d) {
+                                 return d;
+                                });
+      
+                buttons.on("click", function(d) {
+                                      d3.select(".type_buttons")
+                                        .selectAll("div")
+                                        .transition()
+                                        .duration(500)
+                                        .style("color", "black")
+                                        .style("background", "rgb(251, 500, 127)");
+      
+                                      d3.select(this)
+                                        .transition()
+                                        .duration(500)
+                                        .style("background", "lightBlue")
+                                        .style("color", "white");
+                                        which_group = update_which_group(d);
+                                        
+                                        
+                                    });
+      
+        }
+             
+    </script>
+  </head>
+
+  <body>
+    <header>
+      <div class="inner">
+        <h1>Titanic visualization</h1>
+        <h2>Let us walk into the event killed 1502 people</h2>
+        <a href="https://github.com/Edaward/Edaward.github.io" class="button"><small>Follow me on</small>Github</a>
+        
+      </div>
+    </header>
+      <div id ="body">
+        <script type="text/javascript">
+          d3.csv("titanic_data4.csv", draw); 
+        </script>
+      </div>
+  </body>
+</html>
