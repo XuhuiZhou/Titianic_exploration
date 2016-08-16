@@ -85,18 +85,16 @@
                        
                         var data2 = dimple.filterData(data,"Tag",'The aged');
                       }
-                      
-      
                       chart1 = update_chart("Class",data2);
                       chart1.assignColor('Died', "red", "black", 0.5);         
                       chart1.draw();  
                 }
-      
+                //The function is used to plot the bar chart
                 function update_chart(x_var,data2) {
                       var myChart1 = new dimple.chart(svg, data2);
                       var x = myChart1.addCategoryAxis("x", x_var); 
                       x.addOrderRule(["1st class","2nd class","3rd class"])    
-                      myChart1.addLegend(200, 10, 500, 20, "right");
+                      myChart1.addLegend(200, 10, 400, 50, "right");
                       myChart1.addMeasureAxis("y", "Count");
                       var mySeries = myChart1.addSeries("Survived", dimple.plot.bar);
                       mySeries.addOrderRule(["Died","Survived"])
