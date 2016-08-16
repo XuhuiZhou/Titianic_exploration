@@ -28,6 +28,15 @@
         padding: 3px;
         margin: 7px;
       }
+      div.text {
+        position:fixed;
+        bottom: 50px;
+        right: 50px;
+        width: 300px;
+        height:300px;
+        border: 10px groove #1E90FF;
+        text-shadow: 0 0 3px #FF0000;
+      }
     </style>
     <script type="text/javascript">
        function draw(data) {
@@ -151,13 +160,16 @@
         <h1>Titanic visualization</h1>
         <h2>Let us walk into the event that killed 1502 people</h2>
         <a href="https://www.youtube.com/watch?v=9xoqXVjBEF8&feature=youtu.be" class="button"><small>Revisit this</small>Catastrophe</a>
-        
       </div>
     </header>
       <div id ="chartContainer">
         <script type="text/javascript">
           d3.csv("titanic_data4.csv", draw); // load data
         </script>
+      </div>
+      <div class = "text">
+        <p>This is about
+        </p>
       </div>
   </body>
 </html>
