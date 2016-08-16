@@ -22,7 +22,6 @@
         top: 115px;
         left: 740px;
       }
-
       div.type_buttons div {
         background-color: rgb(251, 500, 127);
         padding: 3px;
@@ -50,9 +49,7 @@
                 var margin =50,
                     width = 800 - margin,
                     height = 500 - margin;
-      
-              
-      
+                //create a new svg graph
                 var svg = dimple.newSvg("#chartContainer", width+margin, height+margin);
       
                 var button_labels = ['All Passengers','Children','Men','Women','The aged'];
@@ -115,12 +112,11 @@
                 var data2 =data;
                 
                 var myChart = new dimple.chart(svg, data2);
-      
-      
+                
                 // create inicial chart
                 create_chart('All Passengers')
       
-                //create buttons 
+                //create buttons and set its initial value
                 var buttons = d3.select("body")
                                  .append("div")
                                  .attr("class", "type_buttons")
@@ -131,30 +127,25 @@
                                  .text(function(d) {
                                  return d;
                                 });
-      
+                //create movements when the buttons were clicked
                 buttons.on("click", function(d) {
-                                      d3.select(".type_buttons")
+                                      d3.select(".type_buttons")//change the style to the origin one
                                         .selectAll("div")
                                         .transition()
                                         .duration(500)
                                         .style("color", "black")
                                         .style("background", "rgb(251, 500, 127)");
       
-                                      d3.select(this)
+                                      d3.select(this)//change the style to a new one
                                         .transition()
                                         .duration(500)
                                         .style("background", "lightBlue")
                                         .style("color", "white");
                                         which_group = update_which_group(d);
-                                        
-                                        
-                                    });
-      
-        }
-             
+                                });
+       }
     </script>
   </head>
-
   <body>
     <header>
       <div class="inner">
